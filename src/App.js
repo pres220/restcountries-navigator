@@ -7,6 +7,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      isLoading: false,
       countryData: [],
       tempData: [],
       searchQuery: "",
@@ -17,9 +18,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ isLoading: true });
     fetch("https://restcountries.eu/rest/v2/all")
       .then(response => response.json())
-      .then(data => this.setState({ countryData: data, tempData: data }))
+      .then(data => this.setState({ isLoading: false, countryData: data, tempData: data }))
       .catch(error => console.error(error));
   }
 
@@ -63,7 +65,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Header searchQuery={this.state.searchQuery} handleChange={this.handleChange}/>
-        <CountryList countryData={this.state.tempData} />
+        <CountryList isLoading={this.state.isLoading} countryData={this.state.tempData} />
       </React.Fragment>
     );
   }
