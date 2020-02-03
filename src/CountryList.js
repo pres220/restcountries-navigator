@@ -10,7 +10,7 @@ class CountryList extends React.Component {
   }
 
   render() {
-    const countryList = this.props.countryData.map(country => {console.log(country.area); return (
+    const countryList = this.props.countryData.map(country => (
       <CountryListItem
         key={country.numericCode}
         name={country.name}
@@ -18,7 +18,7 @@ class CountryList extends React.Component {
         population={country.population}
         area={country.area}
       />
-    )});
+    ));
 
     return <ul className="country-list">{countryList}</ul>;
   }

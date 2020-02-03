@@ -2,12 +2,17 @@ import React from "react";
 import CountryList from "./CountryList";
 import Header from "./Header";
 
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      countryData: []
+      countryData: [],
+      searchQuery: "",
+      sortBy: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -17,11 +22,40 @@ class App extends React.Component {
       .catch(error => console.error(error));
   }
 
+  handleChange(e) {
+    const { name, value } = e.target;
+    console.log(name, value);
+
+    this.setState(prevState => ({
+      [name]: value,
+      countryData: this.sortCountryData(prevState.countryData, value)
+    }));
+  }
+
+  sortCountryData(arr, sortBy) {
+    switch (sortBy) {
+      case "alpha":
+          arr.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+      case "alphaReverse":
+          arr.sort((a, b) => b.name.localeCompare(a.name));
+          break;
+      case "pop":
+          arr.sort((a, b) => a.population - b.population);
+          break;
+      case "popReverse":
+          arr.sort((a, b) => b.population - a.population);
+          break;
+      default:
+          return arr;
+    }
+    return arr;
+  }
+
   render() {
-    console.log("this.state.countryData", this.state.countryData);
     return (
       <React.Fragment>
-        <Header />
+        <Header searchQuery={this.state.searchQuery} handleChange={this.handleChange}/>
         <CountryList countryData={this.state.countryData} />
       </React.Fragment>
     );
