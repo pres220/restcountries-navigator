@@ -8,6 +8,7 @@ class App extends React.Component {
     super();
     this.state = {
       countryData: [],
+      tempData: [],
       searchQuery: "",
       sortBy: ""
     };
@@ -18,18 +19,24 @@ class App extends React.Component {
   componentDidMount() {
     fetch("https://restcountries.eu/rest/v2/all")
       .then(response => response.json())
-      .then(data => this.setState({ countryData: data }))
+      .then(data => this.setState({ countryData: data, tempData: data }))
       .catch(error => console.error(error));
   }
 
   handleChange(e) {
     const { name, value } = e.target;
     console.log(name, value);
-
-    this.setState(prevState => ({
-      [name]: value,
-      countryData: this.sortCountryData(prevState.countryData, value)
-    }));
+    if (name === "sortBy") {
+      this.setState(prevState => ({
+        [name]: value,
+        tempData: this.sortCountryData(prevState.countryData, value)
+      }));
+    } else if (name === "searchQuery") {
+      this.setState(prevState => ({
+        [name]: value,
+        tempData: prevState.countryData.filter(country => country.name.toLowerCase().includes(value.toLowerCase()))
+      }));
+    }
   }
 
   sortCountryData(arr, sortBy) {
@@ -56,7 +63,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Header searchQuery={this.state.searchQuery} handleChange={this.handleChange}/>
-        <CountryList countryData={this.state.countryData} />
+        <CountryList countryData={this.state.tempData} />
       </React.Fragment>
     );
   }

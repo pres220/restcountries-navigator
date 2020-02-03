@@ -6,22 +6,22 @@ function Header(props) {
       <h1>Restcountries.eu Navigator</h1>
       <div className="search-sort-controls">
         <input
-          type="text"
-          placeholder="Search..."
           name="searchQuery"
           value={props.searchQuery}
           onChange={props.handleChange}
+          type="text"
+          placeholder="Search..."
         />
         <select
+          name="sortBy"
           value={props.sortBy}
           onChange={props.handleChange}
-          name="sortBy"
         >
           <option value="">Sort by</option>
           <option value="alpha">A-Z</option>
           <option value="alphaReverse">Z-A</option>
-          <option value="pop">Population (ascending order)</option>
-          <option value="popReverse">Population (descending order)</option>
+          <option value="pop">Population (Ascending)</option>
+          <option value="popReverse">Population (Descending)</option>
         </select>
       </div>
     </header>
