@@ -1,33 +1,27 @@
 import React from "react";
 import CountryListItem from "./CountryListItem";
 
-
 class CountryList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currData: this.props.countryData
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      currData: this.props.countryData
+    };
+  }
 
-    render() {
-        const countryList = this.props.countryData.map(country => (
-            <CountryListItem
-                key={country.numericCode}
-                name={country.name}
-                flag={country.flag}
-            />
-        ));
+  render() {
+    const countryList = this.props.countryData.map(country => {console.log(country.area); return (
+      <CountryListItem
+        key={country.numericCode}
+        name={country.name}
+        flag={country.flag}
+        population={country.population}
+        area={country.area}
+      />
+    )});
 
-        console.log("this.state.currData", this.state.currData);
-        console.log("this.props.countryData", this.props.countryData);
-
-        return (
-            <div>
-                {countryList}
-            </div>
-        );
-    }
+    return <ul className="country-list">{countryList}</ul>;
+  }
 }
 
 export default CountryList;
