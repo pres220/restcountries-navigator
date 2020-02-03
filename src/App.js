@@ -1,5 +1,6 @@
 import React from "react";
 import CountryList from "./CountryList";
+import Header from "./Header";
 
 class App extends React.Component {
   constructor() {
@@ -20,6 +21,7 @@ class App extends React.Component {
     console.log("this.state.countryData", this.state.countryData);
     return (
       <React.Fragment>
+        <Header />
         <CountryList countryData={this.state.countryData} />
       </React.Fragment>
     );

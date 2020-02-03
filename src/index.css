@@ -29,7 +29,17 @@ img {
   height: 67%;
 }
 
-a {
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background-color: lightskyblue;
+}
+
+header h1 {
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 599px) {
