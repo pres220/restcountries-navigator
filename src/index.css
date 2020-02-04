@@ -36,9 +36,6 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 1em;
   background-color: rgb(148, 193, 221);
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.75);
@@ -49,6 +46,10 @@ header h1 {
   margin: 0;
   color: rgb(61, 61, 61);
   font-size: 1.5rem;
+}
+
+.search-sort-controls {
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 599px) {

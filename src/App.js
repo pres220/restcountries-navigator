@@ -1,8 +1,9 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
 import Header from "./Header";
+import Search from "./Search";
 
 
 class App extends React.Component {
@@ -12,15 +13,16 @@ class App extends React.Component {
       isLoading: true,
       countryData: [],
       tempData: [],
-      searchQuery: "",
       sortBy: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    fetch("https://restcountries.eu/rest/v2/all")
+    console.log("fetching data");
+    fetch("https://restcountries.eu/rest/v2/all?fields=name;nativeName;population;alpha3Code;flag")
       .then(response => response.json())
       .then(data => this.setState({ isLoading: false, countryData: data, tempData: data }))
       .catch(error => console.error(error));
@@ -28,17 +30,21 @@ class App extends React.Component {
 
   handleChange(e) {
     const { name, value } = e.target;
-    console.log(name, value);
-    if (name === "sortBy") {
-      this.setState(prevState => ({
-        [name]: value,
-        tempData: this.sortCountryData(prevState.countryData, value)
-      }));
-    } else if (name === "searchQuery") {
-      this.setState(prevState => ({
-        [name]: value,
-        tempData: prevState.countryData.filter(country => country.name.toLowerCase().includes(value.toLowerCase()))
-      }));
+    this.setState(prevState => ({
+      sortBy: value,
+      tempData: this.sortCountryData(prevState.countryData, value)
+    }));
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const query = e.target.elements["searchQuery"].value.toLowerCase();
+    console.log("Submitted", query);
+    const country = this.state.countryData.find(country => country.name.toLowerCase() === query)
+    if (country) {
+      this.props.history.push(`/${country.alpha3Code}`);
+    } else {
+      this.props.history.push()
     }
   }
 
@@ -65,10 +71,14 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Header searchQuery={this.state.searchQuery} handleChange={this.handleChange}/>
+        <Header />
         <Switch>
           <Route path="/:alpha3Code" component={CountryDetail} />
           <Route path="/" >
+            <Search
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
             <CountryList isLoading={this.state.isLoading} countryData={this.state.tempData} />
           </Route>
         </Switch>
@@ -77,4 +87,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);

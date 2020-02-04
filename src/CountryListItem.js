@@ -16,6 +16,7 @@ function CountryListItem(props) {
         <Link to={`/${props.alpha3Code}`}>
           <h3>{props.name}</h3>
         </Link>
+        <p>({props.nativeName})</p>
         <p>Population: {population}</p>
       </div>
     </li>
