@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CountryListItem(props) {
   const title = `Flag of ${props.name}`;
@@ -12,9 +13,9 @@ function CountryListItem(props) {
         title={title}
       />
       <div className="country-info">
-        <a href={props.name}>
+        <Link to={`/${props.alpha3Code}`}>
           <h3>{props.name}</h3>
-        </a>
+        </Link>
         <p>Population: {population}</p>
       </div>
     </li>

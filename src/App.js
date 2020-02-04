@@ -1,5 +1,6 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
 import Header from "./Header";
 
@@ -66,9 +67,8 @@ class App extends React.Component {
       <React.Fragment>
         <Header searchQuery={this.state.searchQuery} handleChange={this.handleChange}/>
         <Switch>
-          <Route path="/countries/:id">
-          </Route>
-          <Route path="/">
+          <Route path="/:alpha3Code" component={CountryDetail} />
+          <Route path="/" >
             <CountryList isLoading={this.state.isLoading} countryData={this.state.tempData} />
           </Route>
         </Switch>

@@ -9,6 +9,7 @@ function CountryList(props) {
       name={country.name}
       flag={country.flag}
       population={country.population}
+      alpha3Code={country.alpha3Code}
     />
   ));
 

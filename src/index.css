@@ -26,15 +26,14 @@ body {
   max-width: 360px;
 }
 
-.country-info {
-  text-align: center;
-}
-
-img {
+.country-list-item img {
   width: 100%;
   height: 67%;
 }
 
+.country-info {
+  text-align: center;
+}
 
 header {
   display: flex;
