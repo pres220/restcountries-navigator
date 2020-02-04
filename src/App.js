@@ -1,4 +1,5 @@
 import React from "react";
+import { Switch, Route, Link } from "react-router-dom";
 import CountryList from "./CountryList";
 import Header from "./Header";
 
@@ -7,7 +8,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      isLoading: false,
+      isLoading: true,
       countryData: [],
       tempData: [],
       searchQuery: "",
@@ -18,7 +19,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     fetch("https://restcountries.eu/rest/v2/all")
       .then(response => response.json())
       .then(data => this.setState({ isLoading: false, countryData: data, tempData: data }))
@@ -65,7 +65,13 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Header searchQuery={this.state.searchQuery} handleChange={this.handleChange}/>
-        <CountryList isLoading={this.state.isLoading} countryData={this.state.tempData} />
+        <Switch>
+          <Route path="/countries/:id">
+          </Route>
+          <Route path="/">
+            <CountryList isLoading={this.state.isLoading} countryData={this.state.tempData} />
+          </Route>
+        </Switch>
       </React.Fragment>
     );
   }

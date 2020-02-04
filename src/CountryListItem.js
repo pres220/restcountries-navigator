@@ -6,17 +6,17 @@ function CountryListItem(props) {
 
   return (
     <li className="country-list-item">
-        <img
-          src={`${props.flag}#svgView(preserveAspectRatio(none))`}
-          alt={title}
-          title={title}
-        />
-        <div className="country-info">
-          <a href={props.name}>
-            <h3>{props.name}</h3>
-          </a>
-          <p>Population: {population}</p>
-        </div>
+      <img
+        src={`${props.flag}#svgView(preserveAspectRatio(none))`}
+        alt={title}
+        title={title}
+      />
+      <div className="country-info">
+        <a href={props.name}>
+          <h3>{props.name}</h3>
+        </a>
+        <p>Population: {population}</p>
+      </div>
     </li>
   );
 }

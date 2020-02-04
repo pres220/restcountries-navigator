@@ -1,9 +1,12 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function Header(props) {
   return (
     <header>
-      <h1>Restcountries.eu Navigator</h1>
+      <Link to="/">
+        <h1>Restcountries.eu Navigator</h1>
+      </Link>
       <div className="search-sort-controls">
         <input
           name="searchQuery"
