@@ -4,6 +4,7 @@ import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
 import Header from "./Header";
 import Search from "./Search";
+import NotFound from "./NotFound";
 
 
 class App extends React.Component {
@@ -38,13 +39,14 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const query = e.target.elements["searchQuery"].value.toLowerCase();
-    console.log("Submitted", query);
-    const country = this.state.countryData.find(country => country.name.toLowerCase() === query)
+    const form = e.target;
+    const query = form.elements["searchQuery"].value;
+    const country = this.state.countryData.find(country => country.name.toLowerCase() === query.toLowerCase())
     if (country) {
-      this.props.history.push(`/${country.alpha3Code}`);
+      this.props.history.push(`/countries/${country.alpha3Code}`);
     } else {
-      this.props.history.push()
+      alert(`No country found matching "${query}"`);
+      form.reset();
     }
   }
 
@@ -73,14 +75,23 @@ class App extends React.Component {
       <React.Fragment>
         <Header />
         <Switch>
-          <Route path="/:alpha3Code" component={CountryDetail} />
-          <Route path="/" >
-            <Search
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-            />
-            <CountryList isLoading={this.state.isLoading} countryData={this.state.tempData} />
+          <Route exact path="/" >
+            { this.state.isLoading ? (
+                <h1 className="loading-msg">Loading...</h1>
+              ) : (
+                <React.Fragment>
+                  <Search
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                  />
+                  <CountryList countryData={this.state.tempData} />
+                </React.Fragment>
+              )
+            }
           </Route>
+          <Route path="/countries/:alpha3Code" component={CountryDetail} />
+          <Route path="/not-found" component={NotFound} />
+          <Route component={NotFound} />
         </Switch>
       </React.Fragment>
     );

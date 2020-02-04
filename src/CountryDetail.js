@@ -1,11 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import NotFound from "./NotFound";
 
 class CountryDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
+      fetchSuccess: false,
       country: []
     }
   }
@@ -18,19 +20,38 @@ class CountryDetail extends React.Component {
   componentDidUpdate(prevProps) {
     const { alpha3Code } = this.props.match.params;
     if (alpha3Code !== prevProps.match.params.alpha3Code) {
+      this.setState({ isLoading: true, fetchSuccess: false })
       this.fetchData(alpha3Code);
     }
   }
 
   fetchData(alpha3Code) {
     fetch(`https://restcountries.eu/rest/v2/alpha/${alpha3Code}`)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.text)
+        }
+        return response;
+      })
       .then(response => response.json())
-      .then(data => this.setState({ isLoading: false, country: data }))
-      .catch(error => console.error(error))
+      .then(data => {
+        this.setState({ isLoading: false, fetchSuccess: true, country: data });
+      })
+      .catch(error => {
+        console.error(error);
+        this.setState({ isLoading: false })
+      })
   }
 
   render() {
-    console.log(this.state.country.name);
+    if (this.state.isLoading) {
+      return <h2 className="loading-msg">Loading...</h2>
+    }
+
+    if (!this.state.isLoading && !this.state.fetchSuccess) {
+      return <NotFound />
+    }
+
     return (
       <div className="country-detail">
         <h2>{this.state.country.name}</h2>

@@ -50,6 +50,19 @@ header h1 {
 
 .search-sort-controls {
   margin: 0 auto;
+  max-width: 600px;
+}
+
+.not-found {
+  text-align: center;
+}
+
+.loading-msg {
+  text-align: center;
+}
+
+.search-failed {
+  text-align: center;
 }
 
 @media screen and (max-width: 599px) {

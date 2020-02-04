@@ -16,8 +16,7 @@ function CountryList(props) {
 
   return (
     <ul className="country-list">
-      { props.isLoading && <h3>Loading...</h3>}
-      { !props.isLoading && countryList }
+      { countryList }
     </ul>
   );
 }

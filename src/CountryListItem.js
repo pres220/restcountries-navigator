@@ -13,7 +13,7 @@ function CountryListItem(props) {
         title={title}
       />
       <div className="country-info">
-        <Link to={`/${props.alpha3Code}`}>
+        <Link to={`/countries/${props.alpha3Code}`}>
           <h3>{props.name}</h3>
         </Link>
         <p>({props.nativeName})</p>
