@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
 import Header from "./Header";
@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   handleChange(e) {
-    const { name, value } = e.target;
+    const { value } = e.target;
     this.setState(prevState => ({
       sortBy: value,
       tempData: this.sortCountryData(prevState.countryData, value)
@@ -39,14 +39,13 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const form = e.target;
-    const query = form.elements["searchQuery"].value;
-    const country = this.state.countryData.find(country => country.name.toLowerCase() === query.toLowerCase())
+    const query = e.target.elements["searchQuery"].value.toLowerCase();
+    const country = this.state.countryData.find(country => country.name.toLowerCase() === query);
     if (country) {
       this.props.history.push(`/countries/${country.alpha3Code}`);
     } else {
-      alert(`No country found matching "${query}"`);
-      form.reset();
+      alert("No country found matching query.");
+      e.target.reset();
     }
   }
 

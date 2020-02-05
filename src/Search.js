@@ -2,14 +2,14 @@ import React from "react";
 
 function Search(props) {
   return (
-    <div className="search-sort-controls">
+    <div className="search">
       <form onSubmit={props.handleSubmit}>
         <input
           name="searchQuery"
           type="text"
-          placeholder="Search..."
+          placeholder="Search ..."
         />
-        <button>Submit</button>
+        <button className="search-button">Submit Query</button>
       </form>
       <select
         name="sortBy"
