@@ -123,7 +123,13 @@ select:focus {
 }
 
 .country-detail-flag {
-  width: 100%;
+  border: 2px solid magenta;
+}
+
+.country-detail-flag img {
+  width: 500px;
+  height: 333px;
+  border: 2px solid black;
 }
 
 table,

@@ -57,10 +57,9 @@ class CountryDetail extends React.Component {
       <div className="country-detail">
         <h1>{this.state.country.name}</h1>
         <div className="country-detail-container">
-          <div>
+          <div className="country-detail-flag">
             <img
-              className="country-detail-flag"
-              src={this.state.country.flag}
+              src={`${this.state.country.flag}#svgView(preserveAspectRatio(none))`}
               alt={`Flag of ${this.state.country.name}`}
               title={`Flag of ${this.state.country.name}`}
             />
