@@ -1,11 +1,10 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import CountryDetail from "./CountryDetail";
-import CountryList from "./CountryList";
 import Header from "./Header";
 import Search from "./Search";
-import SortBy from "./SortBy";
 import NotFound from "./NotFound";
+import Home from "./Home";
 
 
 class App extends React.Component {
@@ -75,18 +74,12 @@ class App extends React.Component {
       <React.Fragment>
         <Switch>
           <Route exact path="/" >
-            { this.state.isLoading ? (
-                <h1 className="loading-msg">Loading...</h1>
-              ) : (
-                <React.Fragment>
-                  <Header>
-                    <Search handleSubmit={this.handleSubmit} />
-                    <SortBy handleChange={this.handleChange}/>
-                  </Header>
-                    <CountryList countryData={this.state.tempData} />
-                </React.Fragment>
-              )
-            }
+            <Home
+              isLoading={this.state.isLoading}
+              handleSubmit={this.state.handleSubmit}
+              handleChange={this.state.handleChange}
+              countryData={this.state.tempData}
+            />
           </Route>
           <Route path="/countries/:alpha3Code" render={(props) => {
             return (
