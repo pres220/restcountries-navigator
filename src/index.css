@@ -126,6 +126,7 @@ select:focus {
   display: grid;
   grid-template-columns: 50% 20% 20%;
   grid-column-gap: 10px;
+  grid-row-gap: 10px;
 }
 
 .country-detail-flag {
@@ -157,9 +158,11 @@ thead {
 }
 
 @media screen and (max-width: 599px) {
-  .country-list {
+  .country-list,
+  .country-detail-container {
     grid-template-columns: auto;
   }
+
 
   header h1 {
     text-align: center;
@@ -194,16 +197,20 @@ thead {
   .country-list {
     grid-template-columns: auto auto;
   }
+
 }
 
 @media screen and (min-width: 900px) {
   .country-list {
     grid-template-columns: auto auto auto;
   }
+
 }
 
 @media screen and (min-width: 1200px) {
   .country-list {
     grid-template-columns: auto auto auto auto;
   }
+
+
 }

@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import NotFound from "./NotFound";
-import CountryNames from "./CountryNames";
-import CountryLanguages from "./CountryLanguages";
-import CountryList from "./CountryList";
+import NamesTable from "./NamesTable";
+import GeographyTable from "./GeographyTable";
 
 class CountryDetail extends React.Component {
   constructor(props) {
@@ -68,95 +66,24 @@ class CountryDetail extends React.Component {
             />
           </div>
 
-          <table>
-            <thead>
-              <tr>
-                <th colSpan="2">Names</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Name</th>
-                <td>{this.state.country.name}</td>
-              </tr>
-              <tr>
-                <th>Native Name</th>
-                <td>{this.state.country.nativeName}</td>
-              </tr>
-              <tr>
-                <th>Alternate Spellings</th>
-                <td>{this.state.country.altSpellings.join(", ")}</td>
-              </tr>
-              <tr>
-                <th>Languages</th>
-                <td>{this.state.country.languages.map(lang => (lang.name)).join(", ")}</td>
-              </tr>
-              <tr>
-                <th>Demonym</th>
-                <td>{this.state.country.demonym}</td>
-              </tr>
-              <tr>
-                <th>Top Level Domain (TLD)</th>
-                <td>{this.state.country.topLevelDomain.join(", ")}</td>
-              </tr>
-            </tbody>
-          </table>
+          <NamesTable
+            name={this.state.country.name}
+            nativeName={this.state.country.nativeName}
+            altSpellings={this.state.country.altSpellings}
+            languages={this.state.country.languages}
+            demonym={this.state.country.demonym}
+            topLevelDomain={this.state.country.topLevelDomain}
+          />
 
-          <table>
-            <thead>
-              <tr>
-                <th colSpan="2">Geography</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Region</th>
-                <td>{this.state.country.region}</td>
-              </tr>
-              <tr>
-                <th>Subregion</th>
-                <td>{this.state.country.subregion}</td>
-              </tr>
-              <tr>
-                <th>Capital</th>
-                <td>{this.state.country.capital}</td>
-              </tr>
-              <tr>
-                <th>Population</th>
-                <td>
-                  { this.state.country.population ? (
-                      this.state.country.population.toLocaleString("en-US")
-                    ) : 0
-                  }
-                </td>
-              </tr>
-              <tr>
-                <th>Area</th>
-                <td>
-                  { this.state.country.area ? (
-                      <span>{this.state.country.area.toLocaleString("en-US")} km<sup>2</sup></span>
-                    ) : 0
-                  }
-                </td>
-              </tr>
-              <tr>
-                <th>Bordering Countries</th>
-                <td>
-                  {this.state.country.borders ?
-                    this.state.country.borders.map((border, index, borders) => (
-                    <span key={border}>
-                      <Link
-                        to={`/countries/${border}`}
-                      >
-                        <span>{border}{index + 1 !== borders.length ? ", " : ""}</span>
-                      </Link>
-                    </span>
-                  )) : <span>None</span> }
-                </td>
-              </tr>
+          <GeographyTable
+            region={this.state.country.region}
+            subregion={this.state.country.subregion}
+            capital={this.state.country.capital}
+            population={this.state.country.population}
+            area={this.state.country.area}
+            borders={this.state.country.borders}
+          />
 
-            </tbody>
-          </table>
         </div>
       </div>
     );
