@@ -14,7 +14,7 @@ function Home(props) {
           <Search handleSubmit={props.handleSubmit} />
           <SortBy handleChange={props.handleChange}/>
         </Header>
-          <CountryList countryData={props.state.tempData} />
+          <CountryList countryData={props.countryData} />
       </React.Fragment>
     )
   );

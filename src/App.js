@@ -1,10 +1,8 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
-import CountryDetail from "./CountryDetail";
-import Header from "./Header";
-import Search from "./Search";
 import NotFound from "./NotFound";
 import Home from "./Home";
+import DetailPage from "./DetailPage"
 
 
 class App extends React.Component {
@@ -39,6 +37,7 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log("handleSubmit");
     const query = e.target.elements["searchQuery"].value.toLowerCase();
     const country = this.state.countryData.find(country => country.name.toLowerCase() === query);
     if (country) {
@@ -76,22 +75,14 @@ class App extends React.Component {
           <Route exact path="/" >
             <Home
               isLoading={this.state.isLoading}
-              handleSubmit={this.state.handleSubmit}
-              handleChange={this.state.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleChange={this.handleChange}
               countryData={this.state.tempData}
             />
           </Route>
-          <Route path="/countries/:alpha3Code" render={(props) => {
-            return (
-              <React.Fragment>
-                <Header>
-                  <Search handleSubmit={this.handleSubmit} />
-                </Header>
-                <CountryDetail {...props}/>
-              </React.Fragment>
-            );
-          }}>
-          </Route>
+          <Route exact path="/countries/:alpha3Code" render={(props) => (
+            <DetailPage handleSubmit={this.handleSubmit} {...props}/>
+          )}/>
           <Route path="/not-found" component={NotFound} />
           <Route component={NotFound} />
         </Switch>
