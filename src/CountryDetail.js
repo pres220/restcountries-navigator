@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NotFound from "./NotFound";
+import CountryNames from "./CountryNames";
 
 class CountryDetail extends React.Component {
   constructor(props) {
@@ -55,6 +56,12 @@ class CountryDetail extends React.Component {
     return (
       <div className="country-detail">
         <h2>{this.state.country.name}</h2>
+        <CountryNames
+          name={this.state.country.name}
+          nativeName={this.state.country.nativeName}
+          altSpellings={this.state.country.altSpellings}
+          translations={this.state.country.translations}
+        />
         <img
           src={this.state.country.flag}
           alt={`Flag of ${this.state.country.name}`}

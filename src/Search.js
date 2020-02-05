@@ -7,7 +7,8 @@ function Search(props) {
         <input
           name="searchQuery"
           type="text"
-          placeholder="Search ..."
+          placeholder="Enter Country ..."
+          required
         />
         <button className="search-button">Submit Query</button>
       </form>
@@ -16,11 +17,11 @@ function Search(props) {
         value={props.sortBy}
         onChange={props.handleChange}
       >
-        <option value="">Sort by</option>
+        <option value="">Sort By</option>
         <option value="alpha">A-Z</option>
         <option value="alphaReverse">Z-A</option>
         <option value="pop">Population &#8679;</option>
-        <option value="popReverse">Population &#8595;</option>
+        <option value="popReverse">Population &#8681;</option>
       </select>
     </div>
   );

@@ -99,6 +99,22 @@ select:focus {
   text-align: center;
 }
 
+table,
+th,
+td {
+  border: 2px solid black;
+}
+
+th,
+td {
+  padding: 1em;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: left;
+}
+
 @media screen and (max-width: 599px) {
   .country-list {
     grid-template-columns: auto;
