@@ -4,6 +4,7 @@ import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
 import Header from "./Header";
 import Search from "./Search";
+import SortBy from "./SortBy";
 import NotFound from "./NotFound";
 
 
@@ -72,23 +73,32 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Header />
         <Switch>
           <Route exact path="/" >
             { this.state.isLoading ? (
                 <h1 className="loading-msg">Loading...</h1>
               ) : (
                 <React.Fragment>
-                  <Search
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                  />
-                  <CountryList countryData={this.state.tempData} />
+                  <Header>
+                    <Search handleSubmit={this.handleSubmit} />
+                    <SortBy handleChange={this.handleChange}/>
+                  </Header>
+                    <CountryList countryData={this.state.tempData} />
                 </React.Fragment>
               )
             }
           </Route>
-          <Route path="/countries/:alpha3Code" component={CountryDetail} />
+          <Route path="/countries/:alpha3Code" render={(props) => {
+            return (
+              <React.Fragment>
+                <Header>
+                  <Search handleSubmit={this.handleSubmit} />
+                </Header>
+                <CountryDetail {...props}/>
+              </React.Fragment>
+            );
+          }}>
+          </Route>
           <Route path="/not-found" component={NotFound} />
           <Route component={NotFound} />
         </Switch>

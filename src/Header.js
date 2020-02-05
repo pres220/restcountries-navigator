@@ -7,6 +7,7 @@ function Header(props) {
       <Link to="/">
         <h1>Restcountries.eu Navigator</h1>
       </Link>
+      {props.children}
     </header>
   );
 }
