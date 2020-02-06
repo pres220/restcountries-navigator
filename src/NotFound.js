@@ -7,9 +7,12 @@ function NotFound(props) {
   const location = useLocation();
   return (
     <React.Fragment>
-      <Header>
-        <Search handleSubmit={props.handleSubmit}/>
-      </Header>
+      { props.showHeader ? (
+          <Header>
+            <Search handleSubmit={props.handleSubmit}/>
+          </Header>
+        ) : null
+      }
       <h2 className="not-found">No resource found for {location.pathname}</h2>
     </React.Fragment>
   );

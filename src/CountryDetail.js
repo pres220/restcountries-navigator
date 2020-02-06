@@ -8,40 +8,31 @@ class CountryDetail extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      fetchSuccess: false,
+      countryIsFound: false,
       country: []
     }
   }
 
   componentDidMount() {
     const { alpha3Code } = this.props.match.params;
-    this.fetchData(alpha3Code);
+    this.getCountryData(alpha3Code);
   }
 
   componentDidUpdate(prevProps) {
     const { alpha3Code } = this.props.match.params;
     if (alpha3Code !== prevProps.match.params.alpha3Code) {
-      this.setState({ isLoading: true, fetchSuccess: false })
-      this.fetchData(alpha3Code);
+      this.setState({ isLoading: true })
+      this.getCountryData(alpha3Code);
     }
   }
 
-  fetchData(alpha3Code) {
-    fetch(`https://restcountries.eu/rest/v2/alpha/${alpha3Code}`)
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.text)
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ isLoading: false, fetchSuccess: true, country: data });
-      })
-      .catch(error => {
-        console.error(error);
-        this.setState({ isLoading: false })
-      })
+  getCountryData(alpha3Code) {
+    const country = this.props.countryData.find(country => country.alpha3Code === alpha3Code)
+    if (country) {
+      this.setState({ isLoading: false, country: country, countryIsFound: true });
+    } else {
+      this.setState({ isLoading: false, countryIsFound: false })
+    }
   }
 
   render() {
@@ -49,8 +40,8 @@ class CountryDetail extends React.Component {
       return <h2 className="loading-msg">Loading...</h2>
     }
 
-    if (!this.state.isLoading && !this.state.fetchSuccess) {
-      return <NotFound />
+    if (!(this.state.isLoading || this.state.countryIsFound)) {
+      return <NotFound showHeader={false} />
     }
 
     return (
@@ -87,7 +78,6 @@ class CountryDetail extends React.Component {
       </div>
     );
   }
-
 }
 
 export default CountryDetail;

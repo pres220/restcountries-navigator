@@ -9,7 +9,7 @@ function DetailPage(props) {
       <Header>
         <Search handleSubmit={props.handleSubmit} />
       </Header>
-      <CountryDetail {...props}/>
+      <CountryDetail countryData={props.countryData} {...props}/>
     </React.Fragment>
   );
 }

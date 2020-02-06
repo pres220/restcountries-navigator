@@ -19,7 +19,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("fetching data");
     fetch("https://restcountries.eu/rest/v2/all")
       .then(response => response.json())
       .then(data => this.setState({ isLoading: false, countryData: data }))
@@ -85,10 +84,14 @@ class App extends React.Component {
             />
           </Route>
           <Route exact path="/countries/:alpha3Code" render={(props) => (
-            <DetailPage handleSubmit={this.handleSubmit} {...props}/>
+            <DetailPage
+              handleSubmit={this.handleSubmit}
+              countryData={this.state.countryData}
+              {...props}
+            />
           )}/>
           <Route>
-            <NotFound handleSubmit={this.handleSubmit}/>
+            <NotFound showHeader={true} handleSubmit={this.handleSubmit}/>
           </Route>
         </Switch>
       </React.Fragment>
