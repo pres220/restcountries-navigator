@@ -10,9 +10,7 @@ class App extends React.Component {
     super();
     this.state = {
       isLoading: true,
-      countryData: [],
-      tempData: [],
-      sortBy: ""
+      countryData: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,16 +21,15 @@ class App extends React.Component {
     console.log("fetching data");
     fetch("https://restcountries.eu/rest/v2/all?fields=name;nativeName;altSpellings;population;alpha3Code;flag")
       .then(response => response.json())
-      .then(data => this.setState({ isLoading: false, countryData: data, tempData: data }))
+      .then(data => this.setState({ isLoading: false, countryData: data }))
       .catch(error => console.error(error));
   }
 
   handleChange(e) {
     const { value } = e.target;
-    this.setState(prevState => ({
-      sortBy: value,
-      tempData: this.sortCountryData(prevState.countryData, value)
-    }));
+    this.setState({
+      countryData: this.sortCountryData(value)
+    });
   }
 
   handleSubmit(e) {
@@ -51,7 +48,8 @@ class App extends React.Component {
     }
   }
 
-  sortCountryData(arr, sortBy) {
+  sortCountryData(sortBy) {
+    const arr = this.state.countryData;
     switch (sortBy) {
       case "alpha":
           arr.sort((a, b) => a.name.localeCompare(b.name));
@@ -80,13 +78,12 @@ class App extends React.Component {
               isLoading={this.state.isLoading}
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
-              countryData={this.state.tempData}
+              countryData={this.state.countryData}
             />
           </Route>
           <Route exact path="/countries/:alpha3Code" render={(props) => (
             <DetailPage handleSubmit={this.handleSubmit} {...props}/>
           )}/>
-          <Route path="/not-found" component={NotFound} />
           <Route component={NotFound} />
         </Switch>
       </React.Fragment>
