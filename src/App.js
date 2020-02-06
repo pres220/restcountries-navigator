@@ -10,6 +10,7 @@ class App extends React.Component {
     super();
     this.state = {
       isLoading: true,
+      fetchSuccess: false,
       countryData: [],
       sortOrder: ""
     };
@@ -20,9 +21,22 @@ class App extends React.Component {
 
   componentDidMount() {
     fetch("https://restcountries.eu/rest/v2/all")
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.text);
+        }
+        return response;
+      })
       .then(response => response.json())
-      .then(data => this.setState({ isLoading: false, countryData: data }))
-      .catch(error => console.error(error));
+      .then(json => this.setState({
+          isLoading: false,
+          fetchSuccess: true,
+          countryData: json
+      }))
+      .catch(error => {
+        console.error(error)
+        this.setState({ isLoading: false, fetchSuccess: false })
+      });
   }
 
   handleChange(e) {
@@ -71,12 +85,26 @@ class App extends React.Component {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return <h1 className="loading-msg">Loading...</h1>;
+    }
+
+    if (!(this.state.isLoading || this.state.fetchSuccess)) {
+      return (
+        <div>
+          <h1>Connection error!</h1>
+          <h2>A connection to the Restcountries.eu API could not be established.</h2>
+        </div>
+      )
+    }
+
     return (
       <React.Fragment>
         <Switch>
           <Route exact path="/" >
             <Home
               isLoading={this.state.isLoading}
+              fetchSuccess={this.state.fetchSuccess}
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
               countryData={this.state.countryData}
