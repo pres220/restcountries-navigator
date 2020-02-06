@@ -10,7 +10,8 @@ class App extends React.Component {
     super();
     this.state = {
       isLoading: true,
-      countryData: []
+      countryData: [],
+      sortOrder: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,7 +20,7 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log("fetching data");
-    fetch("https://restcountries.eu/rest/v2/all?fields=name;nativeName;altSpellings;population;alpha3Code;flag")
+    fetch("https://restcountries.eu/rest/v2/all")
       .then(response => response.json())
       .then(data => this.setState({ isLoading: false, countryData: data }))
       .catch(error => console.error(error));
@@ -28,6 +29,7 @@ class App extends React.Component {
   handleChange(e) {
     const { value } = e.target;
     this.setState({
+      sortOrder: value,
       countryData: this.sortCountryData(value)
     });
   }
@@ -48,9 +50,9 @@ class App extends React.Component {
     }
   }
 
-  sortCountryData(sortBy) {
+  sortCountryData(sortOrder) {
     const arr = this.state.countryData;
-    switch (sortBy) {
+    switch (sortOrder) {
       case "alpha":
           arr.sort((a, b) => a.name.localeCompare(b.name));
           break;
@@ -79,6 +81,7 @@ class App extends React.Component {
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
               countryData={this.state.countryData}
+              sortOrder={this.state.sortOrder}
             />
           </Route>
           <Route exact path="/countries/:alpha3Code" render={(props) => (

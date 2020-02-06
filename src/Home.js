@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Search from "./Search";
-import SortBy from "./SortBy";
+import SortOrder from "./SortOrder";
 import CountryList from "./CountryList";
 
 function Home(props) {
@@ -12,7 +12,7 @@ function Home(props) {
       <React.Fragment>
         <Header>
           <Search handleSubmit={props.handleSubmit} />
-          <SortBy handleChange={props.handleChange}/>
+          <SortOrder sortOrder={props.sortOrder} handleChange={props.handleChange}/>
         </Header>
           <CountryList countryData={props.countryData} />
       </React.Fragment>

@@ -1,13 +1,13 @@
 import React from "react";
 
-function SortBy(props) {
+function SortOrder(props) {
   return (
     <select
-      name="sortBy"
-      value={props.sortBy}
+      name="sortOrder"
+      value={props.sortOrder}
       onChange={props.handleChange}
     >
-      <option value="">Sort By</option>
+      <option value="">Sort Order</option>
       <option value="alpha">A-Z</option>
       <option value="alphaReverse">Z-A</option>
       <option value="pop">Population &#8679;</option>
@@ -16,4 +16,4 @@ function SortBy(props) {
   );
 }
 
-export default SortBy;
+export default SortOrder;
