@@ -86,7 +86,6 @@ header a {
   margin: 0 8px;
   padding: 0.5em;
   background-color: white;
-  border-radius: 5px;
 }
 
 .search-button:hover,
@@ -97,6 +96,7 @@ header a {
 select {
   background-color: white;
   padding: 0.5em;
+  margin-left: 5px;
 }
 
 select:hover,
@@ -175,6 +175,7 @@ thead {
 
   header {
     flex-direction: column;
+    align-items: center;
   }
 
   header h1 {
@@ -196,6 +197,9 @@ thead {
     margin: 0;
   }
 
+  select {
+    margin: 5px 0;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -267,4 +271,7 @@ thead {
     margin: 0;
   }
 
+  .search {
+    margin: 0;
+  }
 }
