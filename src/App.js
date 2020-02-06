@@ -21,7 +21,7 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log("fetching data");
-    fetch("https://restcountries.eu/rest/v2/all?fields=name;nativeName;population;alpha3Code;flag")
+    fetch("https://restcountries.eu/rest/v2/all?fields=name;nativeName;altSpellings;population;alpha3Code;flag")
       .then(response => response.json())
       .then(data => this.setState({ isLoading: false, countryData: data, tempData: data }))
       .catch(error => console.error(error));
@@ -37,9 +37,12 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("handleSubmit");
     const query = e.target.elements["searchQuery"].value.toLowerCase();
-    const country = this.state.countryData.find(country => country.name.toLowerCase() === query);
+    const country = this.state.countryData.find(country => (
+      country.name.toLowerCase() === query ||
+      country.nativeName.toLowerCase() === query ||
+      country.altSpellings.some(name => name.toLowerCase() === query)
+    ));
     if (country) {
       this.props.history.push(`/countries/${country.alpha3Code}`);
     } else {
