@@ -84,7 +84,9 @@ class App extends React.Component {
           <Route exact path="/countries/:alpha3Code" render={(props) => (
             <DetailPage handleSubmit={this.handleSubmit} {...props}/>
           )}/>
-          <Route component={NotFound} />
+          <Route>
+            <NotFound handleSubmit={this.handleSubmit}/>
+          </Route>
         </Switch>
       </React.Fragment>
     );
