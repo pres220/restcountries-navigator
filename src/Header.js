@@ -5,7 +5,7 @@ function Header(props) {
   return (
     <header>
       <Link to="/">
-        <h1>Restcountries.eu Navigator</h1>
+        <h1>Home</h1>
       </Link>
       {props.children}
     </header>

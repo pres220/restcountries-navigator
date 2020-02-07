@@ -5,11 +5,12 @@ body {
   font-size: 16px;
   box-sizing: border-box;
   background-color: #eeeeee;
+  width: 100%;
 }
 
 .country-list {
-  margin: 10px;
-  padding: 0;
+  margin: 10px auto;
+  padding: 0 10px;
   list-style: none;
   display: grid;
   justify-content: center;
@@ -53,11 +54,11 @@ body {
 
 
 header {
+  width: 100%;
   padding: 1em;
   background-color: #02a2ee;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.75);
   display: flex;
-  justify-content: space-between;
 }
 
 header h1 {
@@ -76,7 +77,8 @@ header a {
 }
 
 .search form {
-  display: inline;
+  display: flex;
+  justify-content: center;
 }
 
 .search input {
@@ -177,20 +179,21 @@ thead {
   header {
     flex-direction: column;
     align-items: center;
+    padding: 0;
   }
 
   header h1 {
     text-align: center;
+    font-size: 1.4rem;
     margin-bottom: 10px;
   }
 
   .search input {
-    width: 50%;
+    width: 40%;
     margin-right: 5px;
   }
 
   .search {
-    margin: 0 auto;
     white-space: nowrap;
   }
 
@@ -204,6 +207,17 @@ thead {
 }
 
 @media screen and (min-width: 600px) {
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  .country-list,
+  .country-detail {
+    margin-top: 85px;
+  }
+
   .country-list {
     grid-template-columns: 1fr 1fr;
   }
@@ -224,28 +238,32 @@ thead {
 
   header {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
 
   header h1 {
-    text-align: center;
-    margin-bottom: 10px;
+    text-align: left;
+    margin-bottom: 0px;
+    font-size: 1.2rem;
   }
 
   .search input {
     margin-right: 5px;
+    width: 33%;
   }
 
   .search {
     white-space: nowrap;
-    margin-left: auto;
   }
 
   .search-button {
     margin: 0;
   }
 
+  select {
+    margin-right: 30px;
+  }
 }
 
 @media screen and (min-width: 900px) {
@@ -254,7 +272,16 @@ thead {
   }
 
   .search {
-    margin-left: auto;
+    margin-left: 0;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .search input {
+    width: 100%;
+    margin-left: 0;
   }
 }
 
