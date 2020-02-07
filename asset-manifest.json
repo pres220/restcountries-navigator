@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/restcountries-navigator/static/css/main.b6c1b530.chunk.css",
-    "main.js": "/restcountries-navigator/static/js/main.b756eb7e.chunk.js",
-    "main.js.map": "/restcountries-navigator/static/js/main.b756eb7e.chunk.js.map",
+    "main.js": "/restcountries-navigator/static/js/main.a10d2bca.chunk.js",
+    "main.js.map": "/restcountries-navigator/static/js/main.a10d2bca.chunk.js.map",
     "runtime-main.js": "/restcountries-navigator/static/js/runtime-main.b406c3d3.js",
     "runtime-main.js.map": "/restcountries-navigator/static/js/runtime-main.b406c3d3.js.map",
     "static/js/2.2db306d4.chunk.js": "/restcountries-navigator/static/js/2.2db306d4.chunk.js",
     "static/js/2.2db306d4.chunk.js.map": "/restcountries-navigator/static/js/2.2db306d4.chunk.js.map",
     "index.html": "/restcountries-navigator/index.html",
-    "precache-manifest.b6ee2ca0101ddcf75e7f4a96107c589a.js": "/restcountries-navigator/precache-manifest.b6ee2ca0101ddcf75e7f4a96107c589a.js",
+    "precache-manifest.cdb17f209f198880f2915715b9da7ce0.js": "/restcountries-navigator/precache-manifest.cdb17f209f198880f2915715b9da7ce0.js",
     "service-worker.js": "/restcountries-navigator/service-worker.js",
     "static/css/main.b6c1b530.chunk.css.map": "/restcountries-navigator/static/css/main.b6c1b530.chunk.css.map",
     "static/js/2.2db306d4.chunk.js.LICENSE.txt": "/restcountries-navigator/static/js/2.2db306d4.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b406c3d3.js",
     "static/js/2.2db306d4.chunk.js",
     "static/css/main.b6c1b530.chunk.css",
-    "static/js/main.b756eb7e.chunk.js"
+    "static/js/main.a10d2bca.chunk.js"
   ]
 }
