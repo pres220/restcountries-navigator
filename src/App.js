@@ -56,7 +56,7 @@ class App extends React.Component {
       country.altSpellings.some(name => name.toLowerCase() === query)
     ));
     if (country) {
-      this.props.history.push(`/countries/${country.alpha3Code}`);
+      this.props.history.push(`/restcountries-navigator/countries/${country.alpha3Code}`);
     } else {
       alert("No country found matching query.");
       e.target.reset();
@@ -101,7 +101,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Switch>
-          <Route exact path="/" >
+          <Route exact path="/restcountries-navigator" >
             <Home
               isLoading={this.state.isLoading}
               fetchSuccess={this.state.fetchSuccess}
@@ -111,7 +111,7 @@ class App extends React.Component {
               sortOrder={this.state.sortOrder}
             />
           </Route>
-          <Route exact path="/countries/:alpha3Code" render={(props) => (
+          <Route exact path="/restcountries-navigator/countries/:alpha3Code" render={(props) => (
             <DetailPage
               handleSubmit={this.handleSubmit}
               countryData={this.state.countryData}

@@ -47,7 +47,7 @@ function GeographyTable(props) {
               props.borders.map((border, index, borders) => (
               <span key={border}>
                 <Link
-                  to={`/countries/${border}`}
+                  to={`/restcountries-navigator/countries/${border}`}
                 >
                   <span>{border}{index + 1 !== borders.length ? ", " : ""}</span>
                 </Link>
