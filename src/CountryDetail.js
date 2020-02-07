@@ -41,7 +41,7 @@ class CountryDetail extends React.Component {
     }
 
     if (!(this.state.isLoading || this.state.countryIsFound)) {
-      return <NotFound showHeader={false} />
+      return <NotFound />
     }
 
     return (

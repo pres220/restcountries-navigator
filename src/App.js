@@ -1,8 +1,9 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
+import CountryDetail from "./CountryDetail";
+import CountryList from "./CountryList";
+import NavBar from "./NavBar";
 import NotFound from "./NotFound";
-import Home from "./Home";
-import DetailPage from "./DetailPage"
 
 
 class App extends React.Component {
@@ -100,26 +101,23 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
+        <NavBar
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+        />
         <Switch>
           <Route exact path="/restcountries-navigator" >
-            <Home
-              isLoading={this.state.isLoading}
-              fetchSuccess={this.state.fetchSuccess}
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-              countryData={this.state.countryData}
-              sortOrder={this.state.sortOrder}
-            />
+            <CountryList countryData={this.state.countryData} />
           </Route>
           <Route exact path="/restcountries-navigator/countries/:alpha3Code" render={(props) => (
-            <DetailPage
+            <CountryDetail
               handleSubmit={this.handleSubmit}
               countryData={this.state.countryData}
               {...props}
             />
           )}/>
           <Route>
-            <NotFound showHeader={true} handleSubmit={this.handleSubmit}/>
+            <NotFound handleSubmit={this.handleSubmit}/>
           </Route>
         </Switch>
       </React.Fragment>
