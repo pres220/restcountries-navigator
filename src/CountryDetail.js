@@ -50,7 +50,7 @@ class CountryDetail extends React.Component {
         <div className="country-detail-container">
           <div className="country-detail-flag">
             <img
-              src={`${this.state.country.flag}#svgView(preserveAspectRatio(none))`}
+              src={this.state.country.flag}
               alt={`Flag of ${this.state.country.name}`}
               title={`Flag of ${this.state.country.name}`}
             />

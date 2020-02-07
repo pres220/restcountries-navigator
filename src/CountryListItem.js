@@ -8,7 +8,7 @@ function CountryListItem(props) {
   return (
     <li className="country-list-item">
       <img
-        src={`${props.flag}#svgView(preserveAspectRatio(none))`}
+        src={props.flag}
         alt={title}
         title={title}
       />
