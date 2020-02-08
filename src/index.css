@@ -94,7 +94,7 @@ body {
 .search input {
   padding: 0.5em 1em;
   width: 100%;
-  border-style: none;
+  border-radius: 0;
   background-color: #efefef;
 }
 
@@ -115,7 +115,6 @@ body {
 
 .sort-order select {
   background-color: rgb(233, 220, 208);
-  border-style: none;
   padding: 0.5em;
 }
 
