@@ -60,8 +60,8 @@ class App extends React.Component {
       this.props.history.push(`/restcountries-navigator/countries/${country.alpha3Code}`);
     } else {
       alert("No country found matching query.");
-      e.target.reset();
     }
+    e.target.reset();
   }
 
   sortCountryData(sortOrder) {

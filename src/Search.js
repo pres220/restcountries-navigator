@@ -9,6 +9,7 @@ function Search(props) {
         placeholder="Enter Country ..."
         required
       />
+      <button>Search</button>
     </form>
   );
 }

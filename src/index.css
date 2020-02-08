@@ -84,6 +84,7 @@ body {
 
 .search {
   max-width: 50%;
+  position: relative;
 }
 
 .search input {
@@ -94,8 +95,26 @@ body {
   background-color: #efefef;
 }
 
+.search button {
+  position: absolute;
+  padding: 0.5em;
+  top: 0px;
+  right: 0px;
+  background: transparent;
+  background-color: rgb(233, 220, 208);
+  border: none;
+  border-left: solid 2px #02a2ee;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.search button:hover,
+.search button:focus {
+  cursor: pointer;
+}
+
 .sort-order select {
-  background-color: #efefef;
+  background-color: rgb(233, 220, 208);
   border-style: none;
   border-radius: 10px;
   padding: 0.5em;
