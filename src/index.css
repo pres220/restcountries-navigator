@@ -118,12 +118,12 @@ body {
   padding: 0.5em;
 }
 
-.not-found,
-.loading-msg {
+.message {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 300px;
+  color: #02a2ee;
 }
 
 .country-detail {

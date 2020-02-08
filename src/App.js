@@ -1,10 +1,11 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
+import homeUrl from "./homeUrl";
 import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
+import Loading from "./Loading";
 import NavBar from "./NavBar";
 import NotFound from "./NotFound";
-import homeUrl from "./homeUrl";
 
 class App extends React.Component {
   constructor() {
@@ -88,7 +89,7 @@ class App extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return <h1 className="loading-msg">Loading...</h1>;
+      return <Loading />;
     }
 
     if (!(this.state.isLoading || this.state.fetchSuccess)) {

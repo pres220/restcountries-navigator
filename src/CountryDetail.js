@@ -1,7 +1,8 @@
 import React from "react";
-import NotFound from "./NotFound";
-import NamesTable from "./NamesTable";
 import GeographyTable from "./GeographyTable";
+import NamesTable from "./NamesTable";
+import NotFound from "./NotFound";
+import Loading from "./Loading";
 
 class CountryDetail extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class CountryDetail extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return <h2 className="loading-msg">Loading...</h2>
+      return <Loading />
     }
 
     if (!(this.state.isLoading || this.state.countryIsFound)) {
