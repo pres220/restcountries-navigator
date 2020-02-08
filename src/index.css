@@ -120,10 +120,15 @@ body {
 
 .message {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 300px;
   color: #02a2ee;
+}
+
+.message h1 {
+  margin-bottom: 10px;
 }
 
 .country-detail {

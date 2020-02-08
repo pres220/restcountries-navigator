@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import homeUrl from "./homeUrl";
+import ConnectionError from "./ConnectionError";
 import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
 import Loading from "./Loading";
@@ -88,25 +89,16 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <Loading />;
-    }
-
-    if (!(this.state.isLoading || this.state.fetchSuccess)) {
-      return (
-        <div>
-          <h1>Connection error!</h1>
-          <h2>A connection to the Restcountries.eu API could not be established.</h2>
-        </div>
-      )
-    }
-
     return (
       <React.Fragment>
         <NavBar
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
         />
+
+        { this.state.isLoading && <Loading />}
+        { !this.state.isLoading && !this.state.fetchSuccess && <ConnectionError />}
+
         <Switch>
           <Route exact path={homeUrl} >
             <CountryList countryData={this.state.countryData} />
