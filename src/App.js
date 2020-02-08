@@ -4,7 +4,7 @@ import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
 import NavBar from "./NavBar";
 import NotFound from "./NotFound";
-
+import homeUrl from "./homeUrl";
 
 class App extends React.Component {
   constructor() {
@@ -57,7 +57,7 @@ class App extends React.Component {
       country.altSpellings.some(name => name.toLowerCase() === query)
     ));
     if (country) {
-      this.props.history.push(`/restcountries-navigator/countries/${country.alpha3Code}`);
+      this.props.history.push(`${homeUrl}/${country.alpha3Code}`);
     } else {
       alert("No country found matching query.");
     }
@@ -107,18 +107,14 @@ class App extends React.Component {
           handleChange={this.handleChange}
         />
         <Switch>
-          <Route exact path="/restcountries-navigator" >
+          <Route exact path={homeUrl} >
             <CountryList countryData={this.state.countryData} />
           </Route>
-          <Route exact path="/restcountries-navigator/countries/:alpha3Code" render={(props) => (
-            <CountryDetail
-              handleSubmit={this.handleSubmit}
-              countryData={this.state.countryData}
-              {...props}
-            />
+          <Route exact path={`${homeUrl}/:alpha3Code`} render={(props) => (
+            <CountryDetail countryData={this.state.countryData} {...props} />
           )}/>
           <Route>
-            <NotFound handleSubmit={this.handleSubmit}/>
+            <NotFound />
           </Route>
         </Switch>
       </React.Fragment>

@@ -1,0 +1,1 @@
+export default "/restcountries-navigator";
