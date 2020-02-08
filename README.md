@@ -1,6 +1,6 @@
 # Restcountries Navigator
 
-A responsive React.js front-end app that consumes data from the restcountries.eu API.
+A responsive React.js front-end app that consumes data from the [restcountries.eu](https://restcountries.eu) API.
 
 #### View
 
