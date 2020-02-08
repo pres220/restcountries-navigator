@@ -84,7 +84,11 @@ body {
 
 .search {
   max-width: 50%;
-  position: relative;
+}
+
+.search > form {
+  display: flex;
+  justify-content: center;
 }
 
 .search input {
@@ -92,15 +96,13 @@ body {
   width: 100%;
   border-style: none;
   border-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   background-color: #efefef;
 }
 
 .search button {
-  position: absolute;
   padding: 0.5em;
-  top: 0px;
-  right: 0px;
-  background: transparent;
   background-color: rgb(233, 220, 208);
   border: none;
   border-left: solid 2px #02a2ee;
@@ -109,8 +111,11 @@ body {
 }
 
 .search button:hover,
-.search button:focus {
+.search button:focus
+.sort-order select:hover,
+.sort-order select:focus {
   cursor: pointer;
+  background-color: rgb(204, 193, 183);
 }
 
 .sort-order select {
@@ -118,11 +123,6 @@ body {
   border-style: none;
   border-radius: 10px;
   padding: 0.5em;
-}
-
-.sort-order select:hover,
-.sort-order select:focus {
-  cursor: pointer;
 }
 
 .not-found,
@@ -191,8 +191,7 @@ thead {
     margin-bottom: 8px;
   }
 
-  .title,
-  .search input {
+  .title {
     text-align: center;
   }
 
@@ -201,7 +200,7 @@ thead {
   }
 
   .search {
-    max-width: 100%;
+    max-width: 60%;
   }
 
   .country-list,
@@ -251,6 +250,7 @@ thead {
   .search {
     flex: 1;
     margin: 0 auto;
+    max-width: 33%;
   }
 
   .sort-order {

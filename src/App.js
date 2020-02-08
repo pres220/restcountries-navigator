@@ -62,6 +62,7 @@ class App extends React.Component {
       alert("No country found matching query.");
     }
     e.target.reset();
+    e.target.firstChild.blur();
   }
 
   sortCountryData(sortOrder) {

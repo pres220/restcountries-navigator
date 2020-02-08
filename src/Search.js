@@ -6,10 +6,10 @@ function Search(props) {
       <input
         name="searchQuery"
         type="search"
-        placeholder="Enter Country ..."
+        placeholder="Search ..."
         required
       />
-      <button>Search</button>
+      <button>Submit</button>
     </form>
   );
 }
