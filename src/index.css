@@ -12,6 +12,67 @@ body {
   height: 100%;
 }
 
+.navbar {
+  width: 100%;
+  padding: 0;
+  background-color: #02a2ee;
+  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+}
+
+.navbar > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.title h1 {
+  padding: 0;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.title a {
+  text-decoration: none;
+}
+
+.search {
+  max-width: 50%;
+}
+
+.search > form {
+  display: flex;
+  justify-content: center;
+}
+
+.search input {
+  padding: 0.5em 1em;
+  width: 100%;
+  background-color: #efefef;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.search button {
+  padding: 0.5em;
+  background-color: rgb(233, 220, 208);
+}
+
+.search button:hover,
+.search button:focus
+.sort-order select:hover,
+.sort-order select:focus {
+  cursor: pointer;
+  background-color: rgb(204, 193, 183);
+}
+
+.sort-order select {
+  background-color: rgb(233, 220, 208);
+  padding: 0.5em;
+}
+
 .country-list {
   margin: 10px auto;
   padding: 0 10px;
@@ -53,69 +114,6 @@ body {
 
 .country-info p {
   margin: 5px 0;
-}
-
-
-.navbar {
-  width: 100%;
-  padding: 0;
-  background-color: #02a2ee;
-  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.75);
-  position: fixed;
-  top: 0;
-}
-
-.navbar > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.title h1 {
-  padding: 0;
-  color: white;
-  font-size: 1.5rem;
-}
-
-.title a {
-  text-decoration: none;
-}
-
-.search {
-  max-width: 50%;
-}
-
-.search > form {
-  display: flex;
-  justify-content: center;
-}
-
-.search input {
-  padding: 0.5em 1em;
-  width: 100%;
-  border-radius: 0;
-  background-color: #efefef;
-}
-
-.search button {
-  padding: 0.5em;
-  background-color: rgb(233, 220, 208);
-  border: none;
-  border-left: solid 2px #02a2ee;
-}
-
-.search button:hover,
-.search button:focus
-.sort-order select:hover,
-.sort-order select:focus {
-  cursor: pointer;
-  background-color: rgb(204, 193, 183);
-}
-
-.sort-order select {
-  background-color: rgb(233, 220, 208);
-  padding: 0.5em;
 }
 
 .message {
