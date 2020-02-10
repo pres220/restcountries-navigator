@@ -37,8 +37,11 @@ class App extends React.Component {
           countryData: json
       }))
       .catch(error => {
-        console.error(error)
-        this.setState({ isLoading: false, fetchSuccess: false })
+        console.error(error);
+        this.setState({
+          isLoading: false,
+          fetchSuccess: false
+        });
       });
   }
 
@@ -88,16 +91,20 @@ class App extends React.Component {
     return arr;
   }
 
+
   render() {
+    if (this.state.isLoading) {
+      return <Loading />;
+    } else if (!this.state.fetchSuccess) {
+      return <ConnectionError />;
+    }
+
     return (
       <React.Fragment>
         <NavBar
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
         />
-
-        { this.state.isLoading && <Loading />}
-        { !this.state.isLoading && !this.state.fetchSuccess && <ConnectionError />}
 
         <Switch>
           <Route exact path={homeUrl} >

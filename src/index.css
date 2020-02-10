@@ -123,8 +123,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 300px;
   color: #02a2ee;
+  height: 100vh;
 }
 
 .message h1 {
