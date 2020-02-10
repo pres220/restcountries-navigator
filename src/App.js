@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
-import homeUrl from "./homeUrl";
 import ConnectionError from "./ConnectionError";
 import CountryDetail from "./CountryDetail";
 import CountryList from "./CountryList";
@@ -14,7 +13,7 @@ class App extends React.Component {
     this.state = {
       isLoading: true,
       fetchSuccess: false,
-      countryData: [],
+      countriesData: [],
       sortOrder: ""
     };
 
@@ -34,7 +33,7 @@ class App extends React.Component {
       .then(json => this.setState({
           isLoading: false,
           fetchSuccess: true,
-          countryData: json
+          countriesData: json
       }))
       .catch(error => {
         console.error(error);
@@ -49,20 +48,20 @@ class App extends React.Component {
     const { value } = e.target;
     this.setState({
       sortOrder: value,
-      countryData: this.sortCountryData(value)
+      countriesData: this.sortCountriesData(value)
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const query = e.target.elements["searchQuery"].value.toLowerCase();
-    const country = this.state.countryData.find(country => (
+    const country = this.state.countriesData.find(country => (
       country.name.toLowerCase() === query ||
       country.nativeName.toLowerCase() === query ||
       country.altSpellings.some(name => name.toLowerCase() === query)
     ));
     if (country) {
-      this.props.history.push(`${homeUrl}/${country.alpha3Code}`);
+      this.props.history.push(`/${country.alpha3Code}`);
     } else {
       alert("No country found matching query.");
     }
@@ -70,8 +69,8 @@ class App extends React.Component {
     e.target.firstChild.blur();
   }
 
-  sortCountryData(sortOrder) {
-    const arr = this.state.countryData;
+  sortCountriesData(sortOrder) {
+    const arr = this.state.countriesData;
     switch (sortOrder) {
       case "alpha":
           arr.sort((a, b) => a.name.localeCompare(b.name));
@@ -101,17 +100,13 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <NavBar
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-        />
-
+        <NavBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
         <Switch>
-          <Route exact path={homeUrl} >
-            <CountryList countryData={this.state.countryData} />
+          <Route exact path="/" >
+            <CountryList countriesData={this.state.countriesData} />
           </Route>
-          <Route exact path={`${homeUrl}/:alpha3Code`} render={(props) => (
-            <CountryDetail countryData={this.state.countryData} {...props} />
+          <Route exact path="/:alpha3Code" render={(props) => (
+            <CountryDetail countriesData={this.state.countriesData} {...props} />
           )}/>
           <Route>
             <NotFound />

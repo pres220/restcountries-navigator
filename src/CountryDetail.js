@@ -28,7 +28,7 @@ class CountryDetail extends React.Component {
   }
 
   getCountryData(alpha3Code) {
-    const country = this.props.countryData.find(country => country.alpha3Code === alpha3Code)
+    const country = this.props.countriesData.find(country => country.alpha3Code === alpha3Code)
     if (country) {
       this.setState({ isLoading: false, country: country, countryIsFound: true });
     } else {

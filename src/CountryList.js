@@ -3,7 +3,7 @@ import CountryListItem from "./CountryListItem";
 
 function CountryList(props) {
 
-  const countryList = props.countryData.map(country => (
+  const countryList = props.countriesData.map(country => (
     <CountryListItem
       key={country.alpha3Code}
       name={country.name}

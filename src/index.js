@@ -6,7 +6,7 @@ import ScrollToTop from "./ScrollToTop";
 import "./index.css";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/restcountries-navigator">
     <ScrollToTop />
     <App />
   </BrowserRouter>,

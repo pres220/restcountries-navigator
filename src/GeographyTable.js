@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import homeUrl from "./homeUrl";
 
 function GeographyTable(props) {
   return (
@@ -47,7 +46,7 @@ function GeographyTable(props) {
             { props.borders.length ?
                 props.borders.map((border, index, borders) => (
                 <span key={border}>
-                  <Link to={`${homeUrl}/${border}`} >
+                  <Link to={`/${border}`} >
                     <span>{border}{index + 1 !== borders.length ? ", " : ""}</span>
                   </Link>
                 </span>
