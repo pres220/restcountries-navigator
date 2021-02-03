@@ -11,10 +11,10 @@ function NavBar(props) {
           <Link to="/"><h1>Home</h1></Link>
         </li>
         <li className="search">
-          <Search handleSubmit={props.handleSubmit}/>
+          <Search handleSearchQuerySubmit={props.handleSearchQuerySubmit}/>
         </li>
         <li className="sort-order">
-          <SortOrder handleChange={props.handleChange}/>
+          <SortOrder handleSortOrderChange={props.handleSortOrderChange}/>
         </li>
       </ul>
     </nav>

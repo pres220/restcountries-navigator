@@ -17,8 +17,8 @@ class App extends React.Component {
       sortOrder: ""
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSortOrderChange = this.handleSortOrderChange.bind(this);
+    this.handleSearchQuerySubmit = this.handleSearchQuerySubmit.bind(this);
   }
 
   componentDidMount() {
@@ -44,15 +44,15 @@ class App extends React.Component {
       });
   }
 
-  handleChange(e) {
+  handleSortOrderChange(e) {
     const { value } = e.target;
-    this.setState({
+    this.setState(prevState => ({
       sortOrder: value,
-      countriesData: this.sortCountriesData(value)
-    });
+      countriesData: this.sortCountriesData(value, [...prevState.countriesData])
+    }));
   }
 
-  handleSubmit(e) {
+  handleSearchQuerySubmit(e) {
     e.preventDefault();
     const query = e.target.elements["searchQuery"].value.toLowerCase();
     const country = this.state.countriesData.find(country => (
@@ -69,25 +69,24 @@ class App extends React.Component {
     e.target.firstChild.blur();
   }
 
-  sortCountriesData(sortOrder) {
-    const arr = this.state.countriesData;
+  sortCountriesData(sortOrder, countriesDataCopy) {
     switch (sortOrder) {
       case "alpha":
-          arr.sort((a, b) => a.name.localeCompare(b.name));
+          countriesDataCopy.sort((a, b) => a.name.localeCompare(b.name));
           break;
       case "alphaReverse":
-          arr.sort((a, b) => b.name.localeCompare(a.name));
+          countriesDataCopy.sort((a, b) => b.name.localeCompare(a.name));
           break;
       case "pop":
-          arr.sort((a, b) => a.population - b.population);
+          countriesDataCopy.sort((a, b) => a.population - b.population);
           break;
       case "popReverse":
-          arr.sort((a, b) => b.population - a.population);
+          countriesDataCopy.sort((a, b) => b.population - a.population);
           break;
       default:
-          return arr;
+          return countriesDataCopy;
     }
-    return arr;
+    return countriesDataCopy;
   }
 
 
@@ -100,7 +99,7 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <NavBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+        <NavBar handleSearchQuerySubmit={this.handleSearchQuerySubmit} handleSortOrderChange={this.handleSortOrderChange} />
         <Switch>
           <Route exact path="/" >
             <CountryList countriesData={this.state.countriesData} />

@@ -2,7 +2,7 @@ import React from "react";
 
 function Search(props) {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={props.handleSearchQuerySubmit}>
       <input
         name="searchQuery"
         type="search"

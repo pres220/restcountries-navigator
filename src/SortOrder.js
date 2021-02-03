@@ -5,7 +5,7 @@ function SortOrder(props) {
     <select
       name="sortOrder"
       value={props.sortOrder}
-      onChange={props.handleChange}
+      onChange={props.handleSortOrderChange}
     >
       <option value="">Sort Order</option>
       <option value="alpha">A-Z</option>
