@@ -4,6 +4,8 @@ import Search from "./Search";
 import SortOrder from "./SortOrder";
 
 function NavBar(props) {
+  const detailPageStyle = props.match.path === "/:alpha3Code" ? "detail-page" : "";
+
   return (
     <nav className="navbar">
       <ul>
@@ -13,7 +15,7 @@ function NavBar(props) {
         <li className="search">
           <Search handleSearchQuerySubmit={props.handleSearchQuerySubmit}/>
         </li>
-        <li className="sort-order">
+        <li className={`sort-order ${detailPageStyle}`}>
           <SortOrder handleSortOrderChange={props.handleSortOrderChange}/>
         </li>
       </ul>

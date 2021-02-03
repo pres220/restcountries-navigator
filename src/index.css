@@ -187,6 +187,10 @@ thead {
     margin-bottom: 8px;
   }
 
+  .detail-page {
+    display: none;
+  }
+
   .title {
     text-align: center;
   }
@@ -251,6 +255,10 @@ thead {
 
   .sort-order {
     margin-right: 20px;
+  }
+
+  .detail-page {
+    visibility: hidden;
   }
 
   .country-list,

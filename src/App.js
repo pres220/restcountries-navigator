@@ -99,13 +99,27 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <NavBar handleSearchQuerySubmit={this.handleSearchQuerySubmit} handleSortOrderChange={this.handleSortOrderChange} />
         <Switch>
-          <Route exact path="/" >
-            <CountryList countriesData={this.state.countriesData} />
+          <Route exact path="/" render={(props) => (
+            <React.Fragment>
+              <NavBar
+                handleSearchQuerySubmit={this.handleSearchQuerySubmit}
+                handleSortOrderChange={this.handleSortOrderChange}
+                {...props}
+              />
+              <CountryList countriesData={this.state.countriesData} />
+            </React.Fragment>
+          )}>
           </Route>
           <Route exact path="/:alpha3Code" render={(props) => (
-            <CountryDetail countriesData={this.state.countriesData} {...props} />
+            <React.Fragment>
+              <NavBar
+                handleSearchQuerySubmit={this.handleSearchQuerySubmit}
+                handleSortOrderChange={this.handleSortOrderChange}
+                {...props}
+              />
+              <CountryDetail countriesData={this.state.countriesData} {...props} />
+            </React.Fragment>
           )}/>
           <Route>
             <NotFound />
